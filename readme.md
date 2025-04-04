@@ -56,4 +56,4 @@ Feel free to fork this repository and submit a pull request.
 
 ---
 
-Made with ❤️ by [Your Name]
+**Validate your forms… before they make invalid moves 😉**
