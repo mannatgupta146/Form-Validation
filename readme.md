@@ -43,16 +43,15 @@ Here’s a quick look at the Form Validation UI:
 - Toast notifications  
 - Accessibility enhancements (ARIA roles, keyboard navigation)  
 
-## Contributing
-
-Contributions, issues, and feature requests are welcome!  
-Feel free to fork this repository and submit a pull request.
-
 ## Acknowledgements
 
 - Inspired by modern UI practices and clean UX principles  
 - Thanks to open-source contributors and front-end tutorials that shaped this project  
 
+## Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Feel free to fork this repository and submit a pull request.
 
 ---
 
