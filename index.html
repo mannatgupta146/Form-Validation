@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>FORM Validation</title>
+    <title>Enhanced Form</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -15,28 +15,34 @@
             <div class="control-form">
                 <label for="username">Username</label>
                 <input type="text" id="username" placeholder="Your Name" required />
-                <small class="error"></small>
+                <small></small>
             </div>
             <div class="control-form">
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="email@123.com" required />
-                <small class="error"></small>
+                <small></small>
             </div>
-            <div class="control-form">
+            <div class="control-form password-field">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Password" required />
-                <small class="error"></small>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Password" required />
+                    <span class="toggle" onclick="toggleVisibility('password')">👁️</span>
+                </div>
+                <div id="strength" class="strength-meter"></div>
+                <small></small>
             </div>
-            <div class="control-form">
+            <div class="control-form password-field">
                 <label for="passwordCheck">Confirm Password</label>
-                <input type="password" id="passwordCheck" placeholder="Repeat Password" required />
-                <small class="error"></small>
+                <div class="password-wrapper">
+                    <input type="password" id="passwordCheck" placeholder="Repeat Password" required />
+                    <span class="toggle" onclick="toggleVisibility('passwordCheck')">👁️</span>
+                </div>
+                <small></small>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit">Register</button>
             <div id="successMsg" class="success-message"></div>
         </form>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>

@@ -4,10 +4,14 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const passwordCheck = document.getElementById("passwordCheck");
 const successMsg = document.getElementById("successMsg");
+const strengthMeter = document.getElementById("strength");
 
-// Real-time validation
 [username, email, password, passwordCheck].forEach(input => {
     input.addEventListener("input", checkInputs);
+});
+
+password.addEventListener("input", () => {
+    showStrength(password.value);
 });
 
 form.addEventListener("submit", function (e) {
@@ -18,6 +22,8 @@ form.addEventListener("submit", function (e) {
         successMsg.innerText = "🎉 Account created successfully!";
         successMsg.style.display = "block";
         form.reset();
+        strengthMeter.removeAttribute("data-strength");
+
         setTimeout(() => {
             successMsg.style.display = "none";
         }, 3000);
@@ -27,34 +33,47 @@ form.addEventListener("submit", function (e) {
 });
 
 function checkInputs() {
-    validateField(username, username.value.trim() === "", "Username cannot be empty");
-    validateField(email, email.value.trim() === "", "Email cannot be empty", !isEmail(email.value.trim()), "Enter a valid email");
-    validateField(password, password.value.trim() === "", "Password cannot be empty");
-    validateField(passwordCheck, passwordCheck.value.trim() === "", "Please confirm your password", password.value.trim() !== passwordCheck.value.trim(), "Passwords do not match");
+    validateField(username, username.value.trim() === "", "Username is required");
+    validateField(email, email.value.trim() === "", "Email is required", !isEmail(email.value.trim()), "Invalid email");
+    validateField(password, password.value.trim() === "", "Password is required");
+    validateField(passwordCheck, passwordCheck.value.trim() === "", "Please confirm password", password.value !== passwordCheck.value, "Passwords do not match");
 }
 
 function validateField(input, emptyCond, emptyMsg, customCond = false, customMsg = "") {
+    const formControl = input.closest(".control-form");
+    const small = formControl.querySelector("small");
+
     if (emptyCond) {
-        setErrorFor(input, emptyMsg);
+        formControl.className = "control-form fail";
+        small.innerText = emptyMsg;
     } else if (customCond) {
-        setErrorFor(input, customMsg);
+        formControl.className = "control-form fail";
+        small.innerText = customMsg;
     } else {
-        setSuccessFor(input);
+        formControl.className = "control-form success";
+        small.innerText = "";
     }
-}
-
-function setErrorFor(input, message) {
-    const controlForm = input.parentElement;
-    const small = controlForm.querySelector("small");
-    controlForm.className = "control-form fail";
-    small.innerText = message;
-}
-
-function setSuccessFor(input) {
-    const controlForm = input.parentElement;
-    controlForm.className = "control-form success";
 }
 
 function isEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+}
+
+function toggleVisibility(id) {
+    const field = document.getElementById(id);
+    field.type = field.type === "password" ? "text" : "password";
+}
+
+function showStrength(pwd) {
+    const strength = getStrength(pwd);
+    strengthMeter.setAttribute("data-strength", strength);
+}
+
+function getStrength(password) {
+    let strength = 0;
+    if (password.length >= 6) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[\W]/.test(password)) strength++;
+    return strength;
 }
