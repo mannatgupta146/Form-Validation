@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>FORM Validation</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>Create Account</h1>
         </div>
-        <form id="form" class="form">
+        <form id="form" class="form" novalidate>
             <div class="control-form">
                 <label for="username">Username</label>
-                <input type="text" placeholder="Your Name" id="username">
-                <small class="error">dd</small>
+                <input type="text" id="username" placeholder="Your Name" required />
+                <small class="error"></small>
             </div>
             <div class="control-form">
                 <label for="email">Email</label>
-                <input type="email" placeholder="email@123.com" id="email">
+                <input type="email" id="email" placeholder="email@123.com" required />
                 <small class="error"></small>
             </div>
             <div class="control-form">
                 <label for="password">Password</label>
-                <input type="password" placeholder="Password" id="password">
+                <input type="password" id="password" placeholder="Password" required />
                 <small class="error"></small>
             </div>
             <div class="control-form">
-                <label for="passwordCheck">Password Check</label>
-                <input type="password" placeholder="Password Check" id="passwordCheck">
+                <label for="passwordCheck">Confirm Password</label>
+                <input type="password" id="passwordCheck" placeholder="Repeat Password" required />
                 <small class="error"></small>
             </div>
             <button type="submit">Submit</button>
+            <div id="successMsg" class="success-message"></div>
         </form>
-
     </div>
 
     <script src="script.js"></script>
